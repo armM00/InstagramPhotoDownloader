@@ -10,18 +10,18 @@ streamlit.info("""This Python application downloads a photo from an Instagram po
 user_input = streamlit.text_input(label='', placeholder="Paste the URL", key="user_input")
 
 if streamlit.button("Download Photo"):
-    ig_post = user_input.strip()
 
-    try:
-        response = requests.get(f"{ig_post}media/?size=l", stream=True)
+    response = requests.get(f"{user_input}media/?size=l", stream=True)
 
-        desktop_path = os.path.join(os.path.join(os.environ["USERPROFILE"]), "Desktop")
+    desktop_path = os.path.join(os.path.join(os.environ["USERPROFILE"]), "Desktop")
 
-        with open(os.path.join(desktop_path, "image.jpg"), "wb") as f:
-            shutil.copyfileobj(response.raw, f)
+    with open(os.path.join(desktop_path, "image.jpg"), "wb") as f:
+        shutil.copyfileobj(response.raw, f)
 
-        response.close()
+    response.close()
 
-        streamlit.success("Photo downloaded successfully!")
-    except:
-        streamlit.error("Enter a valid URL")
+    streamlit.success("Photo downloaded successfully!")
+
+
+
+
