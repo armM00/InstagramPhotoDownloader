@@ -11,6 +11,6 @@ if st.button("Download Photo"):
     response = requests.get(f"{user_input}media/?size=l", stream=True)
 
     with open("image.jpg", "wb") as f:
-        image = f.write(response.content)
+        f.write(response.content)
 
-    st.write(f"<a href={image} download>Download</a>", unsafe_allow_html=True)
+    st.write(f"<a href={f} download>Download</a>", unsafe_allow_html=True)
