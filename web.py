@@ -14,3 +14,10 @@ if st.button("Download Photo"):
         f.write(response.content)
 
 st.image("image.jpg")
+
+
+file_content = "Hello, world!"
+file_name = "file.txt"
+
+# Display a download button for the file.
+st.download_button(label="Download file", data=file_content, file_name=file_name)
