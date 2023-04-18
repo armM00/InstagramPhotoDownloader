@@ -13,11 +13,11 @@ if st.button("Download Photo"):
     with open("image.jpg", "wb") as f:
         f.write(response.content)
 
-st.image("image.jpg")
+    st.image("image.jpg")
 
 
-file_content = "image.jpg"
-file_name = 'download.jpg'
+    file_content = "image.jpg"
+    file_name = 'download.jpg'
 
-# Display a download button for the file.
-st.download_button(label="Download file", data=file_content, file_name=file_name)
+    # Display a download button for the file.
+    st.download_button(label="Download file", data=file_content, file_name=file_name)
