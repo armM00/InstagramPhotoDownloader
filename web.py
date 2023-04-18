@@ -9,6 +9,8 @@ user_input = st.text_input(label='', placeholder="Paste the URL", key="user_inpu
 
 if st.button("Download Photo"):
     response = requests.get(f"{user_input}media/?size=l", stream=True)
+
     with open("image.jpg", "wb") as f:
         f.write(response.content)
+
     st.write(f"<a href='image.jpg' download>Download</a>", unsafe_allow_html=True)
