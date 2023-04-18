@@ -13,4 +13,4 @@ if st.button("Download Photo"):
     with open("image.jpg", "wb") as f:
         f.write(response.content)
 
-    st.write("Download: [image.jpg](image.jpg)", unsafe_allow_html=True)
+    st.write("<a href='image.jpg' download>Download</a>", unsafe_allow_html=True)
