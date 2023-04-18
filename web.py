@@ -13,7 +13,7 @@ if st.button("Download Photo"):
     with open("instagram.jpg", "wb") as f:
         f.write(response.content)
 
-    st.image(f)
+    st.image('instagram.jpg')
 
     file_content = 'instagram.jpg'
     file_name = 'download.jpg'
