@@ -20,5 +20,4 @@ if st.button("Download Photo"):
 
     file_name = 'download.jpg'
 
-    # Display a download button for the file.
     st.download_button(label="Download file", data=file_content, file_name=file_name, mime='image/jpeg')

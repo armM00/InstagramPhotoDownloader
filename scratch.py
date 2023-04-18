@@ -12,5 +12,6 @@ try:
     response.close()
 
     print("Photo downloaded successfully!")
+
 except ValueError:
     print("Enter a valid URL")
