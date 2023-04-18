@@ -15,8 +15,10 @@ if st.button("Download Photo"):
 
     st.image('instagram.jpg')
 
-    file_content = 'instagram.jpg'
+    with open("instagram.jpg", "rb") as f:
+        file_content = f.read()
+
     file_name = 'download.jpg'
 
     # Display a download button for the file.
-    st.download_button(label="Download file", data=file_content, file_name=file_name)
+    st.download_button(label="Download file", data=file_content, file_name=file_name, mime='image/jpeg')
