@@ -16,8 +16,8 @@ if st.button("Download Photo"):
 st.image("image.jpg")
 
 
-file_content = "Hello, world!"
-file_name = "file.txt"
+file_content = "image.jpg"
+file_name = 'download.jpg'
 
 # Display a download button for the file.
 st.download_button(label="Download file", data=file_content, file_name=file_name)
