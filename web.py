@@ -1,3 +1,4 @@
+import os
 import streamlit
 import requests
 import shutil
@@ -14,7 +15,9 @@ if streamlit.button("Download Photo"):
     try:
         response = requests.get(f"{ig_post}media/?size=l", stream=True)
 
-        with open("image.jpg", "wb") as f:
+        desktop_path = os.path.join(os.path.join(os.environ["USERPROFILE"]), "Desktop")
+
+        with open(os.path.join(desktop_path, "image.jpg"), "wb") as f:
             shutil.copyfileobj(response.raw, f)
 
         response.close()
