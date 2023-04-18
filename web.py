@@ -10,12 +10,12 @@ user_input = st.text_input(label='', placeholder="Paste the URL", key="user_inpu
 if st.button("Download Photo"):
     response = requests.get(f"{user_input}media/?size=l", stream=True)
 
-    with open("image.jpg", "wb") as f:
+    with open("instagram.jpg", "wb") as f:
         f.write(response.content)
 
-    st.image("image.jpg")
+    st.image(f)
 
-    file_content = f
+    file_content = 'instagram.jpg'
     file_name = 'download.jpg'
 
     # Display a download button for the file.
