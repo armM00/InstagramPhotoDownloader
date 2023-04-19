@@ -6,7 +6,7 @@ st.info("""This Python application downloads a photo from an Instagram post.
                \nIt takes the URL of the post as input and saves the photo as a JPG file.""")
 
 user_input = st.text_input(label='', placeholder="Paste the URL", key="user_input")
-url = user_input[0:40]
+url = st.session_state["user_input"][0:40]
 if st.button("Download Photo"):
     response = requests.get(f"{url}media/?size=l", stream=True)
 
