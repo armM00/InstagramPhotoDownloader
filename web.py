@@ -30,5 +30,11 @@ if st.button("Download Photo"):
     else:
         st.error("Please enter a URL in https://www.instagram.com/p/ABCDEFGEFG/ 40 characters-long format"
                  "\n example: https://www.instagram.com/p/BsOGulcndj-/")
+
+        st.markdown(
+            "<p style='color:gray'>Please enter a URL in https://www.instagram.com/p/ABCDEFGEFG/ 40 characters-long "
+            "format</p>",
+            unsafe_allow_html=True)
+
         if st.button("Reload"):
             st.rerun()
