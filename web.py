@@ -29,7 +29,7 @@ if st.button("Download Photo"):
 
     else:
         st.markdown(
-            "<p style='color:gray'>Please enter a URL in <b>https://www.instagram.com/p/ABCDEFGEFG/</b> 40 "
+            "<p style='color:gray'>Please enter a URL in 40 "
             "characters-long format<br>Example: <b>https://www.instagram.com/p/BsOGulcndj-/</b> </p>",
             unsafe_allow_html=True)
 
