@@ -6,7 +6,7 @@ st.info("""This Python application downloads a photo from an Instagram post.
                \nIt takes the URL of the post as input and saves the photo as a JPG file.""")
 
 user_input = st.text_input(label='Enter a URL',
-                           placeholder="Paste the URL in https://www.instagram.com/p/CrL8j9cputW/ format",
+                           placeholder="https://www.instagram.com/p/BsOGulcndj-/",
                            key="user_input")
 
 
