@@ -1,13 +1,11 @@
 import streamlit as st
 import requests
-import plotly.express as px
 
 
 icon = 'logo.ico'
 st.set_page_config(page_title="IGD",
                    page_icon=icon)
 
-df = px.data.iris()
 
 animation = """
 <style>
