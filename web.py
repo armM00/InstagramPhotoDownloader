@@ -14,13 +14,13 @@ if len(user_input) == 40:
     pass
 else:
     if len(user_input) > 40:
-        user_input = user_input[:40]
+        url = user_input[:40]
     else:
         st.error("Please enter a URL in https://www.instagram.com/p/CrL8j9cputW/ format")
         exit()
 
     if st.button("Download Photo"):
-        response = requests.get(f"{user_input}media/?size=l", stream=True)
+        response = requests.get(f"{url}media/?size=l", stream=True)
 
         with open("instagram.jpg", "wb") as f:
             f.write(response.content)
