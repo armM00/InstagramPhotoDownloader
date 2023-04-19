@@ -1,5 +1,6 @@
 import streamlit as st
 import requests
+import PIL
 
 st.title("Instagram Photo Downloader")
 st.info("""This Python application downloads a photo from an Instagram post. 
@@ -12,7 +13,7 @@ user_input = st.text_input(label='Enter a URL',
 url = user_input[:40]
 
 if st.button("Download Photo"):
-    if len(user_input) == 40:
+    if len(url) == 40:
         response = requests.get(f"{url}media/?size=l", stream=True)
 
         with open("instagram.jpg", "wb") as f:
@@ -27,6 +28,13 @@ if st.button("Download Photo"):
 
         st.download_button(label="Download file", data=file_content, file_name=file_name, mime='image/jpeg')
 
-    if len(user_input) != 40:
-        st.error("Please enter a URL in https://www.instagram.com/p/CrL8j9cputW/ format")
+    if len(url) != 40:
+        try:
+            st.error("Please enter a URL in https://www.instagram.com/p/CrL8j9cputW/ format")
+        except (requests.exceptions.InvalidSchema,
+                requests.exceptions.MissingSchema,
+                PIL.UnidentifiedImageError):
+            st.error("Please enter a URL in https://www.instagram.com/p/CrL8j9cputW/ format")
+
+
 
