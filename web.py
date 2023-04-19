@@ -30,7 +30,7 @@ if st.button("Download Photo"):
 
     if len(url) != 40:
         try:
-            st.error("Please enter a URL in https://www.instagram.com/p/CrL8j9cputW/ format")
+            pass
         except (requests.exceptions.InvalidSchema,
                 requests.exceptions.MissingSchema,
                 PIL.UnidentifiedImageError):
