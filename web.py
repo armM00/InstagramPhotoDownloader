@@ -19,21 +19,20 @@ else:
         st.error("Please enter a URL in https://www.instagram.com/p/CrL8j9cputW/ format")
         exit()
 
+    if st.button("Download Photo"):
+        response = requests.get(f"{user_input}media/?size=l", stream=True)
 
-if st.button("Download Photo"):
-    response = requests.get(f"{user_input}media/?size=l", stream=True)
+        with open("instagram.jpg", "wb") as f:
+            f.write(response.content)
 
-    with open("instagram.jpg", "wb") as f:
-        f.write(response.content)
+        st.image('instagram.jpg')
 
-    st.image('instagram.jpg')
+        with open("instagram.jpg", "rb") as f:
+            file_content = f.read()
 
-    with open("instagram.jpg", "rb") as f:
-        file_content = f.read()
+        file_name = 'download.jpg'
 
-    file_name = 'download.jpg'
-
-    st.download_button(label="Download file", data=file_content, file_name=file_name, mime='image/jpeg')
+        st.download_button(label="Download file", data=file_content, file_name=file_name, mime='image/jpeg')
 
     # try:
     #     if len(url) != 40:
