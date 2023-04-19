@@ -14,9 +14,6 @@ if st.button("Download Photo"):
     if len(user_input) == 40:
         url = user_input
 
-    elif len(user_input) > 40:
-        url = user_input[:40]
-
     else:
         st.error("Please enter a URL in https://www.instagram.com/p/CrL8j9cputW/ format")
         exit()
