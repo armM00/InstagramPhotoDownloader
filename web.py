@@ -11,7 +11,7 @@ user_input = st.text_input(label='Enter a URL',
 
 
 if st.button("Download Photo"):
-    if len(user_input) == 40:
+    if len(str(user_input)) == 40:
 
         response = requests.get(f"{user_input}media/?size=l", stream=True)
 
@@ -30,17 +30,3 @@ if st.button("Download Photo"):
     else:
         st.error("Please enter a URL in https://www.instagram.com/p/CrL8j9cputW/ format")
         exit()
-
-
-
-
-# try:
-#     if len(url) != 40:
-#         st.error("Please enter a URL in https://www.instagram.com/p/CrL8j9cputW/ format")
-# except (requests.exceptions.InvalidSchema,
-#         requests.exceptions.MissingSchema,
-#         PIL.UnidentifiedImageError):
-#     # Empty except block to suppress any errors
-#     pass
-#
-#
