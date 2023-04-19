@@ -10,11 +10,14 @@ user_input = st.text_input(label='Enter a URL',
                            placeholder="Paste the URL in https://www.instagram.com/p/CrL8j9cputW/ format",
                            key="user_input")
 
-url = user_input[:40]
+if len(user_input) == 40:
+    pass
+else:
+    user_input = user_input[:40]
 
 if st.button("Download Photo"):
-    if len(url) == 40:
-        response = requests.get(f"{url}media/?size=l", stream=True)
+    if len(user_input) == 40:
+        response = requests.get(f"{user_input}media/?size=l", stream=True)
 
         with open("instagram.jpg", "wb") as f:
             f.write(response.content)
