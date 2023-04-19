@@ -28,12 +28,9 @@ if st.button("Download Photo"):
         st.download_button(label="Download file", data=file_content, file_name=file_name, mime='image/jpeg')
 
     else:
-        st.error("Please enter a URL in https://www.instagram.com/p/ABCDEFGEFG/ 40 characters-long format"
-                 "\n example: https://www.instagram.com/p/BsOGulcndj-/")
-
         st.markdown(
-            "<p style='color:gray'>Please enter a URL in https://www.instagram.com/p/ABCDEFGEFG/ 40 characters-long "
-            "format</p>",
+            "<p style='color:gray'>Please enter a URL in <b>https://www.instagram.com/p/ABCDEFGEFG/</b> 40 "
+            "characters-long format<br>Example: <b>https://www.instagram.com/p/BsOGulcndj-/</b> </p>",
             unsafe_allow_html=True)
 
         if st.button("Reload"):
