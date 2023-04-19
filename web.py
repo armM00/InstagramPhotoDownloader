@@ -1,14 +1,37 @@
 import streamlit as st
 import requests
+import plotly.express as px
+
 
 icon = 'logo.ico'
-
 st.set_page_config(page_title="IGD",
                    page_icon=icon)
 
+df = px.data.iris()
+
+animation = """
+<style>
+@keyframes example {
+    0%   {background-color: #0D1B2A;}
+    25%  {background-color: #2B2D42;}
+    50%  {background-color: #1D1D1D;}
+    75%  {background-color: #2B2D42;}
+    100% {background-color: #0D1B2A;}
+}
+
+[data-testid="stAppViewContainer"] > .main {
+    animation-name: example;
+    animation-duration: 10s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+</style>
+"""
+
+st.markdown(animation, unsafe_allow_html=True)
 
 st.title("Instagram Photo Downloader")
-st.info("""This Python application downloads a photo from an Instagram post. 
+st.info("""This app downloads a photo from an Instagram post. 
                \nIt takes the URL of the post as input and saves the photo as a JPG file.""")
 
 user_input = st.text_input(label='Enter a URL',
