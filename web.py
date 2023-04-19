@@ -17,6 +17,7 @@ else:
         user_input = user_input[:40]
     else:
         st.error("Please enter a URL in https://www.instagram.com/p/CrL8j9cputW/ format")
+        exit()
 
 
 if st.button("Download Photo"):
