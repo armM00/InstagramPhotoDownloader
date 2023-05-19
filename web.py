@@ -1,6 +1,9 @@
 import streamlit as st
 import requests
+import warnings
 
+
+warnings.filterwarnings("ignore", category=UserWarning, message="Image was not the expected size")
 
 icon = 'logo.ico'
 st.set_page_config(page_title="IGD",
