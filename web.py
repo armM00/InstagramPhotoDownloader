@@ -56,7 +56,7 @@ if st.button("Download Photo"):
 
         st.download_button(label="Download file", data=file_content, file_name=file_name, mime='image/jpeg')
     elif len(str(user_input)) > 40:
-        url = user_input[:40]
+        url = user_input[:41]
         response = requests.get(f"{url}media/?size=l", stream=True)
 
         with open("instagram.jpg", "wb") as f:
