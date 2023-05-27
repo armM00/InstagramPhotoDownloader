@@ -34,51 +34,36 @@ st.info("""This app downloads a photo from an Instagram post.
 user_input = st.text_input(label='Enter a URL',
                            placeholder="https://www.instagram.com/p/BsOGulcndj-/",
                            key="user_input").strip()
+if user_input:
+    if len(user_input) >= 40:
+        url = user_input[:40]
+        if st.button("Download Photo"):
+            try:
+                response = requests.get(f"{url}media/?size=l", stream=True)
+                if response.status_code == 200:
+                    with open("instagram.jpg", "wb") as f:
+                        f.write(response.content)
 
-if st.button("Download Photo"):
+                    st.image('instagram.jpg')
 
-    if len(str(user_input)) == 40:
-        try:
-            response = requests.get(f"{user_input}media/?size=l", stream=True)
-            response.raise_for_status()  # Raise an exception if the request was not successful
+                    with open("instagram.jpg", "rb") as f:
+                        file_content = f.read()
 
-            with open("instagram.jpg", "wb") as f:
-                f.write(response.content)
+                    file_name = 'download.jpg'
 
-            st.image('instagram.jpg')
+                    st.download_button(label="Download file", data=file_content, file_name=file_name, mime='image/jpeg')
+                else:
+                    st.error("Failed to download the photo. Please try again later.")
+            except (requests.HTTPError, requests.ConnectionError) as e:
+                st.error("An error occurred while downloading the photo. Please try again later.")
+                st.error(str(e))
+    else:
+        st.error("Please enter a valid URL")
 
-            with open("instagram.jpg", "rb") as f:
-                file_content = f.read()
 
-            file_name = 'download.jpg'
 
-            st.download_button(label="Download file", data=file_content, file_name=file_name, mime='image/jpeg')
 
-        except (requests.HTTPError, requests.ConnectionError) as e:
-            st.error("An error occurred while downloading the photo. Please try again later.")
-            st.error(str(e))
-#
-#     elif len(str(user_input)) > 40:
-#         url = user_input[:41]
-#         response = requests.get(f"{url}media/?size=l", stream=True)
-#
-#         with open("instagram.jpg", "wb") as f:
-#             f.write(response.content)
-#
-#         st.image('instagram.jpg')
-#
-#         with open("instagram.jpg", "rb") as f:
-#             file_content = f.read()
-#
-#         file_name = 'download.jpg'
-#
-#         st.download_button(label="Download file", data=file_content, file_name=file_name, mime='image/jpeg')
-#     else:
-#         st.markdown(
-#             "<p style='color:gray'>Please enter a URL in 40 "
-#             "characters-long format<br>Example: <b>https://www.instagram.com/p/BsOGulcndj-/</b> </p>",
-#             unsafe_allow_html=True)
-#
-# with st.expander("Legal Info"):  # Element 5
-#     st.write("<br><a href='https://linktr.ee/arm_andreasian_' style='color:yellow;'>Armen-Jean Andreasian</a> "
-#              "<br>Free Apps for All © 2023", unsafe_allow_html=True)
+    #
+    # with st.expander("Legal Info"):  # Element 5
+    #     st.write("<br><a href='https://linktr.ee/arm_andreasian_' style='color:yellow;'>Armen-Jean Andreasian</a> "
+    #              "<br>Free Apps for All © 2023", unsafe_allow_html=True)
