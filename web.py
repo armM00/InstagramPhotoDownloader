@@ -38,41 +38,47 @@ user_input = st.text_input(label='Enter a URL',
 if st.button("Download Photo"):
 
     if len(str(user_input)) == 40:
-        response = requests.get(f"{user_input}media/?size=l", stream=True)
+        try:
+            response = requests.get(f"{user_input}media/?size=l", stream=True)
+            response.raise_for_status()  # Raise an exception if the request was not successful
 
-        with open("instagram.jpg", "wb") as f:
-            f.write(response.content)
+            with open("instagram.jpg", "wb") as f:
+                f.write(response.content)
 
-        st.image('instagram.jpg')
+            st.image('instagram.jpg')
 
-        with open("instagram.jpg", "rb") as f:
-            file_content = f.read()
+            with open("instagram.jpg", "rb") as f:
+                file_content = f.read()
 
-        file_name = 'download.jpg'
+            file_name = 'download.jpg'
 
-        st.download_button(label="Download file", data=file_content, file_name=file_name, mime='image/jpeg')
+            st.download_button(label="Download file", data=file_content, file_name=file_name, mime='image/jpeg')
 
-    elif len(str(user_input)) > 40:
-        url = user_input[:41]
-        response = requests.get(f"{url}media/?size=l", stream=True)
-
-        with open("instagram.jpg", "wb") as f:
-            f.write(response.content)
-
-        st.image('instagram.jpg')
-
-        with open("instagram.jpg", "rb") as f:
-            file_content = f.read()
-
-        file_name = 'download.jpg'
-
-        st.download_button(label="Download file", data=file_content, file_name=file_name, mime='image/jpeg')
-    else:
-        st.markdown(
-            "<p style='color:gray'>Please enter a URL in 40 "
-            "characters-long format<br>Example: <b>https://www.instagram.com/p/BsOGulcndj-/</b> </p>",
-            unsafe_allow_html=True)
-
-with st.expander("Legal Info"):  # Element 5
-    st.write("<br><a href='https://linktr.ee/arm_andreasian_' style='color:yellow;'>Armen-Jean Andreasian</a> "
-             "<br>Free Apps for All © 2023", unsafe_allow_html=True)
+        except (requests.HTTPError, requests.ConnectionError) as e:
+            st.error("An error occurred while downloading the photo. Please try again later.")
+            st.error(str(e))
+#
+#     elif len(str(user_input)) > 40:
+#         url = user_input[:41]
+#         response = requests.get(f"{url}media/?size=l", stream=True)
+#
+#         with open("instagram.jpg", "wb") as f:
+#             f.write(response.content)
+#
+#         st.image('instagram.jpg')
+#
+#         with open("instagram.jpg", "rb") as f:
+#             file_content = f.read()
+#
+#         file_name = 'download.jpg'
+#
+#         st.download_button(label="Download file", data=file_content, file_name=file_name, mime='image/jpeg')
+#     else:
+#         st.markdown(
+#             "<p style='color:gray'>Please enter a URL in 40 "
+#             "characters-long format<br>Example: <b>https://www.instagram.com/p/BsOGulcndj-/</b> </p>",
+#             unsafe_allow_html=True)
+#
+# with st.expander("Legal Info"):  # Element 5
+#     st.write("<br><a href='https://linktr.ee/arm_andreasian_' style='color:yellow;'>Armen-Jean Andreasian</a> "
+#              "<br>Free Apps for All © 2023", unsafe_allow_html=True)
