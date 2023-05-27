@@ -1,5 +1,6 @@
 import streamlit as st
 import requests
+import imghdr
 
 icon = 'logo.ico'
 st.set_page_config(page_title="IGD",
@@ -49,6 +50,13 @@ if user_input:
 
             with open("insta.jpg", "wb") as f:
                 f.write(response.content)
+
+            image_format = imghdr.what("insta.jpg")
+            if image_format is None:
+                st.error("The downloaded file is not a valid image.")
+            else:
+                st.image("insta.jpg")
+
 
             st.image('insta.jpg')
 
