@@ -24,7 +24,7 @@ animation = """
 }
 </style>
 """
-
+st.write("Dickj")
 st.markdown(animation, unsafe_allow_html=True)
 
 st.title("Instagram Photo Downloader")
