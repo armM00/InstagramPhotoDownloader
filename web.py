@@ -20,7 +20,7 @@ length = len(user_input)
 if st.button("Download Photo") and length >= 40:
     try:
         url = user_input[:40] + "media/?size=l"
-        response = requests.get(url, stream=True)
+        response = requests.get(url)
         if response.status_code == 200:
             image_bytes = io.BytesIO(response.content)
             st.image(image_bytes, use_column_width=True)
