@@ -16,8 +16,8 @@ st.info("""This app downloads a photo from an Instagram post.
 user_input = st.text_input(label='Enter a URL',
                            placeholder="https://www.instagram.com/p/BsOGulcndj-/",
                            key="user_input")
-
-if st.button("Download Photo") and len(user_input) >= 40:
+length = len(user_input)
+if st.button("Download Photo") and length >= 40:
     try:
         url = user_input[:40] + "media/?size=l"
         response = requests.get(url, stream=True)
@@ -34,5 +34,5 @@ if st.button("Download Photo") and len(user_input) >= 40:
     except (requests.HTTPError, requests.ConnectionError) as e:
         st.error("An error occurred while downloading the photo. Please try again later.")
         st.error(str(e))
-elif len(user_input) < 40:
+elif length < 40 and length != 0:
     st.error("Please enter a valid URL")
