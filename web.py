@@ -1,9 +1,5 @@
 import streamlit as st
 import requests
-import warnings
-
-
-warnings.filterwarnings("ignore", category=UserWarning, message="Image was not the expected size")
 
 icon = 'logo.ico'
 st.set_page_config(page_title="IGD",
@@ -40,8 +36,8 @@ user_input = st.text_input(label='Enter a URL',
                            key="user_input").strip()
 
 if st.button("Download Photo"):
-    if len(str(user_input)) == 40:
 
+    if len(str(user_input)) == 40:
         response = requests.get(f"{user_input}media/?size=l", stream=True)
 
         with open("instagram.jpg", "wb") as f:
@@ -55,6 +51,7 @@ if st.button("Download Photo"):
         file_name = 'download.jpg'
 
         st.download_button(label="Download file", data=file_content, file_name=file_name, mime='image/jpeg')
+
     elif len(str(user_input)) > 40:
         url = user_input[:41]
         response = requests.get(f"{url}media/?size=l", stream=True)
@@ -76,8 +73,6 @@ if st.button("Download Photo"):
             "characters-long format<br>Example: <b>https://www.instagram.com/p/BsOGulcndj-/</b> </p>",
             unsafe_allow_html=True)
 
-        if st.button("Reload"):
-            st.rerun()
 with st.expander("Legal Info"):  # Element 5
     st.write("<br><a href='https://linktr.ee/arm_andreasian_' style='color:yellow;'>Armen-Jean Andreasian</a> "
              "<br>Free Apps for All © 2023", unsafe_allow_html=True)
